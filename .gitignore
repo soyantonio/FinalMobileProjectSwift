@@ -1,0 +1,6 @@
+GoogleService-Info.plist
+*.xcuserstate
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata
+
