@@ -20,6 +20,7 @@
 		34987E52B577281446F18E7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34987FFDBFB673B7B5022288 /* GoogleService-Info.plist */; };
 		34987E7E8C323758AB4B431E /* DeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349875001FA9EA6F041D0F13 /* DeviceController.swift */; };
 		34987F302FEB28358EBA8BD4 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349877AB28D58E9E651E1061 /* TokenModel.swift */; };
+		34987F4DA5D241C46799C3FB /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34987C4E0345817734661462 /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		349874FFB04B3985EEB3CC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		349875001FA9EA6F041D0F13 /* DeviceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceController.swift; sourceTree = "<group>"; };
 		349877AB28D58E9E651E1061 /* TokenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		34987C4E0345817734661462 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		34987CA1DE28F39F365AA0AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		34987D637BCF41DCC41C195A /* FinalMobileProjectSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalMobileProjectSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34987EE534985B36C680178F /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				349874FB2D9FD74C5CF81B54 /* ContentView.swift */,
 				34987EE534985B36C680178F /* SignupView.swift */,
 				3498742AC51DB8FFD019CD4D /* DevicesView.swift */,
+				34987C4E0345817734661462 /* AlertController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				349875147270F235ED2A0B0F /* DevicesView.swift in Sources */,
 				349879443346EF5FFE1A3FAB /* DeviceModel.swift in Sources */,
 				34987E7E8C323758AB4B431E /* DeviceController.swift in Sources */,
+				34987F4DA5D241C46799C3FB /* AlertController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

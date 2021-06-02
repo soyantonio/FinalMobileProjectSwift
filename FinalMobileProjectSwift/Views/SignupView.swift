@@ -6,6 +6,7 @@ import SwiftUI
 
 struct SignupView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var alertController = AlertController()
     @ObservedObject var userController: UserController
 
     @State var email: String = ""
@@ -14,7 +15,7 @@ struct SignupView: View {
 
     var body: some View {
         VStack{
-            NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesViewSignup) {
+            NavigationLink(destination: DevicesView(userController: userController), isActive: $alertController.showDevicesView) {
                 Text("Show Detail")
             }.hidden()
             Text("Create a new account")
@@ -47,16 +48,16 @@ struct SignupView: View {
                 .cornerRadius(7.0)
 
                 Button(action: {
-                    userController.signup(user: UserModel(email: email, password: password))
+                    userController.signup(user: UserModel(email: email, password: password), alertController: alertController)
                 }) {
                     Text("Create account")
                 }.padding(.all).foregroundColor(.white).background(Color.blue).cornerRadius(7.0)
             }.padding(.top)
         }
-        .alert(isPresented: $userController.showAlertSignup) {
+        .alert(isPresented: $alertController.showAlert) {
             Alert(
                     title: Text("Error"),
-                    message: Text("Could not register user \(email). \(userController.alertReasonSignup)"),
+                    message: Text("Could not register user \(email). \(alertController.alertReason)"),
                     dismissButton: .default(Text("Got it!"))
             )
         }

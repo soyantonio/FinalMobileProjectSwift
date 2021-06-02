@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var userController = UserController()
+    @ObservedObject var alertController = AlertController()
     @State private var selection: String? = nil
 
     @State var email: String = ""
@@ -19,7 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesViewLogin) {
+                NavigationLink(destination: DevicesView(userController: userController), isActive: $alertController.showDevicesView) {
                     Text("Show Detail")
                 }.hidden()
                 Text("Access to your account")
@@ -42,7 +43,7 @@ struct ContentView: View {
                         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1.0))
 
                 Button(action: {
-                    userController.login(user: UserModel(email: email, password: password))
+                    userController.login(user: UserModel(email: email, password: password), alertController: alertController)
                 }) {
                     Text("Access")
                 }.padding(.all).foregroundColor(.white).background(Color.blue).cornerRadius(7.0)
@@ -53,10 +54,10 @@ struct ContentView: View {
                 .padding(.all)
                 .padding(.horizontal)
             }
-            .alert(isPresented: $userController.showAlertLogin) {
+            .alert(isPresented: $alertController.showAlert) {
                 Alert(
                         title: Text("Error"),
-                        message: Text("Could not login \(email). \(userController.alertReasonLogin)"),
+                        message: Text("Could not login \(email). \(alertController.alertReason)"),
                         dismissButton: .default(Text("ok"))
                 )
             }
