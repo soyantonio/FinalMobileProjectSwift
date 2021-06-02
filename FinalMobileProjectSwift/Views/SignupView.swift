@@ -14,7 +14,7 @@ struct SignupView: View {
 
     var body: some View {
         VStack{
-            NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesView) {
+            NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesViewSignup) {
                 Text("Show Detail")
             }.hidden()
             Text("Create a new account")
@@ -53,10 +53,10 @@ struct SignupView: View {
                 }.padding(.all).foregroundColor(.white).background(Color.blue).cornerRadius(7.0)
             }.padding(.top)
         }
-        .alert(isPresented: $userController.showAlert) {
+        .alert(isPresented: $userController.showAlertSignup) {
             Alert(
                     title: Text("Error"),
-                    message: Text("Could not register user \(email). \(userController.alertReason)"),
+                    message: Text("Could not register user \(email). \(userController.alertReasonSignup)"),
                     dismissButton: .default(Text("Got it!"))
             )
         }

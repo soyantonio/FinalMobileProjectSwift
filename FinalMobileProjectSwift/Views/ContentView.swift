@@ -19,7 +19,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesView) {
+                NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesViewLogin) {
                     Text("Show Detail")
                 }.hidden()
                 Text("Access to your account")
@@ -53,10 +53,10 @@ struct ContentView: View {
                 .padding(.all)
                 .padding(.horizontal)
             }
-            .alert(isPresented: $userController.showAlert) {
+            .alert(isPresented: $userController.showAlertLogin) {
                 Alert(
                         title: Text("Error"),
-                        message: Text("Could not login \(email). \(userController.alertReason)"),
+                        message: Text("Could not login \(email). \(userController.alertReasonLogin)"),
                         dismissButton: .default(Text("ok"))
                 )
             }

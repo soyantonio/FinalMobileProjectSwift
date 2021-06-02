@@ -14,4 +14,6 @@ target 'FinalMobileProjectSwift' do
 
   ## Pod for Sign in with Google
   pod 'GoogleSignIn'
+
+  pod 'URLImage'
 end
