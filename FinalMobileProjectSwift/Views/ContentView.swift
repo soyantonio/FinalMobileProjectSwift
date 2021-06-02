@@ -48,7 +48,7 @@ struct ContentView: View {
                     Text("Access")
                 }.padding(.all).foregroundColor(.white).background(Color.blue).cornerRadius(7.0)
 
-                NavigationLink(destination: SignupView(userController: userController)){
+                NavigationLink(destination: SignupView()){
                     Text("Not account yet? signup")
                 }.foregroundColor(Color.blue)
                 .padding(.all)

@@ -7,7 +7,7 @@ import SwiftUI
 struct SignupView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var alertController = AlertController()
-    @ObservedObject var userController: UserController
+    @ObservedObject var userController = UserController()
 
     @State var email: String = ""
     @State var password: String = ""
