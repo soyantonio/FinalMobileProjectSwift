@@ -4,6 +4,6 @@
 
 import Foundation
 
-struct TokenModel {
+struct TokenModel: Codable {
     var token: String
 }

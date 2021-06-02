@@ -11,11 +11,19 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var userController = UserController()
+    @State private var selection: String? = nil
 
     var body: some View {
         NavigationView {
-            List {
-
+            VStack {
+                NavigationLink(destination: Text("Second View"), tag: "Second", selection: $selection) { EmptyView() }
+                NavigationLink(destination: Text("Third View"), tag: "Third", selection: $selection) { EmptyView() }
+                Button("Tap to show second") {
+                    self.selection = "Second"
+                }
+                Button("Tap to show third") {
+                    self.selection = "Third"
+                }
             }
             .navigationBarTitle("Users", displayMode: .inline)
             .navigationBarItems(
@@ -24,69 +32,6 @@ struct ContentView: View {
                     }
             )
         }
-    }
-}
-
-struct SignupView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State private var showingAlert = false
-    @ObservedObject var userController: UserController
-    @State var email: String = ""
-    @State var password: String = ""
-
-
-    var body: some View {
-        VStack{
-            Text("Create a new account")
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 20)
-            HStack {
-                Image(systemName: "person.3")
-                        .foregroundColor(.gray)
-                TextField("Email", text: $email)
-            }
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1.0))
-            HStack {
-                Image(systemName: "pencil.circle")
-                        .foregroundColor(.gray)
-                SecureField("Password", text: $password)
-            }
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1.0))
-
-            HStack {
-                Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                        .padding(.all)
-                        .padding(.horizontal)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(7.0)
-
-                Button(action: {
-                    guard userController.signup(user: UserModel(email: email, password: password)) else {
-                        showingAlert = true
-                        return
-                    }
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("Create account")
-                }.padding(.all).foregroundColor(.white).background(Color.blue).cornerRadius(7.0)
-            }.padding(.top)
-        }
-        .alert(isPresented: $showingAlert) {
-            Alert(
-                    title: Text("Error"),
-                    message: Text("Could not register user \(email)"),
-                    dismissButton: .default(Text("Got it!"))
-            )
-        }
-        .padding(.horizontal, 10)
-        .navigationBarTitle("Create an Account")
-        .navigationBarBackButtonHidden(true)
     }
 }
 
