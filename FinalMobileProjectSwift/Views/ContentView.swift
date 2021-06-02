@@ -13,19 +13,56 @@ struct ContentView: View {
     @ObservedObject var userController = UserController()
     @State private var selection: String? = nil
 
+    @State var email: String = ""
+    @State var password: String = ""
+
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: Text("Second View"), tag: "Second", selection: $selection) { EmptyView() }
-                NavigationLink(destination: Text("Third View"), tag: "Third", selection: $selection) { EmptyView() }
-                Button("Tap to show second") {
-                    self.selection = "Second"
+                NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesView) {
+                    Text("Show Detail")
+                }.hidden()
+                Text("Access to your account")
+                        .font(.title2)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 20)
+                HStack {
+                    Image(systemName: "person.3")
+                            .foregroundColor(.gray)
+                    TextField("Email", text: $email)
                 }
-                Button("Tap to show third") {
-                    self.selection = "Third"
+                        .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1.0))
+                HStack {
+                    Image(systemName: "pencil.circle")
+                            .foregroundColor(.gray)
+                    SecureField("Password", text: $password)
                 }
+                        .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 1.0))
+
+                Button(action: {
+                    userController.login(user: UserModel(email: email, password: password))
+                }) {
+                    Text("Access")
+                }.padding(.all).foregroundColor(.white).background(Color.blue).cornerRadius(7.0)
+
+                NavigationLink(destination: SignupView(userController: userController)){
+                    Text("Not account yet? signup")
+                }.foregroundColor(Color.blue)
+                .padding(.all)
+                .padding(.horizontal)
             }
-            .navigationBarTitle("Users", displayMode: .inline)
+            .alert(isPresented: $userController.showAlert) {
+                Alert(
+                        title: Text("Error"),
+                        message: Text("Could not login \(email). \(userController.alertReason)"),
+                        dismissButton: .default(Text("ok"))
+                )
+            }
+            .padding(.horizontal, 10)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitle("Login", displayMode: .inline)
             .navigationBarItems(
                     trailing: NavigationLink(destination: SignupView(userController: userController)){
                         Image(systemName: "plus").foregroundColor(.blue)

@@ -15,8 +15,8 @@ struct SignupView: View {
     var body: some View {
         VStack{
             NavigationLink(destination: DevicesView(userController: userController), isActive: $userController.showDevicesView) {
-                Text("Show Detail").hidden()
-            }
+                Text("Show Detail")
+            }.hidden()
             Text("Create a new account")
                     .font(.title2)
                     .multilineTextAlignment(.center)
@@ -40,11 +40,11 @@ struct SignupView: View {
                 Button("Cancel") {
                     presentationMode.wrappedValue.dismiss()
                 }
-                        .padding(.all)
-                        .padding(.horizontal)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(7.0)
+                .padding(.all)
+                .padding(.horizontal)
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .cornerRadius(7.0)
 
                 Button(action: {
                     userController.signup(user: UserModel(email: email, password: password))

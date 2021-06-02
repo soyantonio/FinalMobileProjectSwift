@@ -11,7 +11,14 @@ import SwiftUI
 struct DevicesView: View {
     @ObservedObject var userController: UserController
     var body: some View {
-        Text(userController.currentUser?.email ?? "none@none.com")
+        VStack{
+            Text(userController.currentUser?.email ?? "none@none.com")
+            List {
+                Text("Device")
+            }
+        }
+        .padding(.horizontal, 10)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
